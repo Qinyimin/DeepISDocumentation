@@ -191,3 +191,132 @@ GET /powers
     ...
 ]
 ```
+## 展示信息接口
+### 病例数展示
+|  方法名  |                totalCaseNum                |
+| :------: | :--------------------------------------------: |
+| 传入参数 |        当前用户id        |
+|  返回值  | 当前用户所管理的所有用户数量及分布 |
+
+```javascript
+GET /users/caseNum
+{
+    userId: 007,
+    total: 100,
+    case: [{name:'女性',
+    		value:70},
+    		{name:'男性',
+    		value:30}],
+}
+```
+### 结节数展示
+|  方法名  |                totalNodeNum                |
+| :------: | :--------------------------------------------: |
+| 传入参数 |        当前用户id        |
+|  返回值  | 当前用户所管理的所有用户标记结节数量及分布 |
+
+```javascript
+GET /users/nodeNum
+{
+    userId: 007,
+    total: 1583,
+    case: [	{value: 321, name: '歧义候选淋巴结'},
+			{value: 158, name: '结直肠系膜淋巴结'},
+			{value: 42, name: '髂外（髂总）淋巴结'},
+			{value: 259, name: '髂内近端淋巴结'},
+			{value: 30, name: '髂内远端淋巴结'},
+			{value: 402, name: '闭孔头测淋巴结'},
+			{ value: 117, name: '闭孔尾测淋巴结'},
+			{ value: 254, name: '髂总动脉分叉血管淋巴结'}];
+```
+### 结节数展示
+|  方法名  |                totalNodeNum                |
+| :------: | :--------------------------------------------: |
+| 传入参数 |        当前用户id        |
+|  返回值  | 当前用户所管理的所有用户标记结节数量及分布 |
+
+```javascript
+GET /users/nodeNum
+{
+    userId: 007,
+    total: 1583,
+    case: [	{value: 321, name: '歧义候选淋巴结'},
+			{value: 158, name: '结直肠系膜淋巴结'},
+			{value: 42, name: '髂外（髂总）淋巴结'},
+			{value: 259, name: '髂内近端淋巴结'},
+			{value: 30, name: '髂内远端淋巴结'},
+			{value: 402, name: '闭孔头测淋巴结'},
+			{ value: 117, name: '闭孔尾测淋巴结'},
+			{ value: 254, name: '髂总动脉分叉血管淋巴结'}，]
+}
+```
+### 审核数展示
+|  方法名  |                totalExamedNum                |
+| :------: | :--------------------------------------------: |
+| 传入参数 |        当前用户id        |
+|  返回值  | 当前用户所管理的所有标记者已标记与已审核数目 |
+
+```javascript
+GET /users/examedNum
+{
+    userId: 007,
+    annotated: 50,
+    examed: 30,
+}
+```
+### 标注者列表展示
+|  方法名  |                getAnnotatorList                |
+| :------: | :--------------------------------------------: |
+| 传入参数 |        当前用户id        |
+|  返回值  | 当前用户所管理的所有标记者分配标注数量，已标注数量与未标注数量 |
+
+```javascript
+GET /users/annotatorList
+{
+    userId: 007,
+    annoList: [{name:'旋涡鸣人'，
+    			caseNum:50,
+    			annotated:30,
+    			unAnnotated:20},
+    			......]
+}
+```
+### 标注动态列表展示
+|  方法名  |                getAnnotatorActivity                |
+| :------: | :--------------------------------------------: |
+| 传入参数 |        当前用户id        |
+|  返回值  | 当前用户所管理的所有标记者的标注动态 |
+
+```javascript
+GET /users/annotatorList
+{
+    userId: 007,
+    annoList: [{name:'旋涡鸣人',
+				SericeId: '6354132',
+				time: '7/10',},
+    			......]
+}
+```
+
+## 病例管理接口
+### 标注动态列表展示
+|  方法名  |                getCaseList                |
+| :------: | :--------------------------------------------: |
+| 传入参数 |        当前用户id        |
+|  返回值  | 当前用户所管理的所有病例数据 |
+
+```javascript
+GET /users/annotatorList
+{
+    userId: 007,
+    caseList: [{PatientName: 'Li gang', 
+				MRN: '0009629786', 
+				AccessionNumber: 'CT00566598', 
+				Modality: 'CT', 
+				StudyDate: '6月20, 2013', 
+				StudyDescription:'Abdomen^HX_ch_abd_c(Adult)',
+				StudyInstanceUID: '1.2.840.78.75.7.5.1674158.1371717835',},
+				{…….}
+}
+(StudyInstanceUID用于跳转ohif相应病例,不可缺少，其余为展示内容，可按情况增减)
+```
