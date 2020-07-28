@@ -1,6 +1,6 @@
 * [Introduction](README.md)
 * [Part I](part1/README.md)
-    * [项目支持](part1/support.md)
+    * [项目依赖](part1/dependencies.md)
     * [UI设计](part1/UIDesign.md)
 * [Part II](part2/README.md)
     * [项目组织结构](part2/structure.md)
