@@ -11,10 +11,11 @@
 ├── src		                # main source file holder
 │   ├── component           # React component library
 │   ├── image               # Image file holder
-│   ├── redux               # useInfo
+│   ├── redux               # userInfo
+│   ├── public              # 存放全局变量
 │   ├── App.js				
 │   ├── index.js
-│   └── DashBoard.js        # Connects platform and extension projects
+│   └── DashBoard.js        # 主文件
 │
 ├── ...                     
 ├── package.json            # Shared devDependencies and commands
