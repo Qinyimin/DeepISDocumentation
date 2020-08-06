@@ -360,3 +360,23 @@ GET /users/annotatorList
 }
 (StudyInstanceUID用于跳转ohif相应病例,不可缺少，其余为展示内容，可按情况增减)
 ```
+## 结节搜索接口接口
+### 标注动态列表展示
+|  方法名  |                getNodeList                |
+| :------: | :--------------------------------------------: |
+| 传入参数 |        结节搜索条件（分区、直径）       |
+|  返回值  | 满足条件的结节列表 |
+
+```javascript
+POST /users/nodeList
+{
+    partition:'XM',
+    diam: [1.0, 1.5],
+    caseList: [ PationtName:'Li gang',
+                diam: 1.3,
+                partition: 'XM',
+                ....],
+				{…….}
+}
+(搜索满足分区'为结直肠系膜淋巴结'(XM),直径在1.0~1.5cm范围内的结节 )
+```
