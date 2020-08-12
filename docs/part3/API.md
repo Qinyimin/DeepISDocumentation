@@ -311,7 +311,7 @@ GET /users/examedNum
 |  返回值  | 当前用户所管理的所有标记者已标注数量,已审核数量,未标注数量 |
 
 ```javascript
-GET /users/annotatorList
+GET /users/getAnnotatorList
 {
     userId: 007,
     annoList: [{name:'旋涡鸣人'，
@@ -321,6 +321,40 @@ GET /users/annotatorList
     			......]
 }
 ```
+### 病例标注情况列表展示
+|  方法名  |                getExamedList                |
+| :------: | :--------------------------------------------: |
+| 传入参数 |        标注者id        |
+|  返回值  | 标注者分配病例及其标注与审核情况 |
+
+```javascript
+GET /users/getAnnotatorList
+{
+    annotatorName: '黄昊',
+    annoList: [{    PatientName: 'Li gang',
+                    MRN: '0009629786',
+                    AccessionNumber: 'CT00566598',
+                    IsAnnotated: 'yes',
+                    IsExamed: 'yes',
+                    StudyDate: '6月20, 2013',
+                    AnnotatedNodeNumbers: '68',
+                    StudyInstanceUID: '1.2.840.78.75.7.5.1674158.1371717835',
+                    key:'1.2.840.78.75.7.5.1674158.1371717835'
+                }, {
+                    PatientName: 'Wu Yanzu',
+                    MRN: '0009629786',
+                    AccessionNumber: 'CT00566598',
+                    IsAnnotated: 'yes',
+                    IsExamed: null,
+                    StudyDate: '6月20, 2013',
+                    AnnotatedNodeNumbers: '79',
+                    StudyInstanceUID: '1.2.840.78.75.7.5.1674158.1371717836',
+                    key: '1.2.840.78.75.7.5.1674158.1371717836',
+                }
+    			......]
+(IsAnnotated表示该病例是否被标注（'yes'/null），IsExamed表示该病例是否被审核（'yes'/null）)                
+}
+```
 ### 标注动态列表展示
 |  方法名  |                getAnnotatorActivity                |
 | :------: | :--------------------------------------------: |
@@ -328,7 +362,7 @@ GET /users/annotatorList
 |  返回值  | 当前用户所管理的所有标记者的标注动态 |
 
 ```javascript
-GET /users/annotatorList
+GET /users/getAnnotatorActivity
 {
     userId: 007,
     annoList: [{name:'旋涡鸣人',
@@ -339,7 +373,7 @@ GET /users/annotatorList
 ```
 
 ## 病例管理接口
-### 标注动态列表展示
+### 病例列表展示
 |  方法名  |                getCaseList                |
 | :------: | :--------------------------------------------: |
 | 传入参数 |        当前用户id        |
@@ -361,7 +395,7 @@ GET /users/annotatorList
 (StudyInstanceUID用于跳转ohif相应病例,不可缺少，其余为展示内容，可按情况增减)
 ```
 ## 结节搜索接口接口
-### 标注动态列表展示
+### 搜索结果展示
 |  方法名  |                getNodeList                |
 | :------: | :--------------------------------------------: |
 | 传入参数 |        结节搜索条件（分区、直径）       |
