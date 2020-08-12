@@ -267,41 +267,7 @@ GET /users/nodeNum
 			{value: 30, name: '髂内远端淋巴结'},
 			{value: 402, name: '闭孔头测淋巴结'},
 			{ value: 117, name: '闭孔尾测淋巴结'},
-			{ value: 254, name: '髂总动脉分叉血管淋巴结'}];
-```
-### 结节数展示
-|  方法名  |                totalNodeNum                |
-| :------: | :--------------------------------------------: |
-| 传入参数 |        当前用户id        |
-|  返回值  | 当前用户所管理的所有用户标记结节数量及分布 |
-
-```javascript
-GET /users/nodeNum
-{
-    userId: 007,
-    total: 1583,
-    case: [	{value: 321, name: '歧义候选淋巴结'},
-			{value: 158, name: '结直肠系膜淋巴结'},
-			{value: 42, name: '髂外（髂总）淋巴结'},
-			{value: 259, name: '髂内近端淋巴结'},
-			{value: 30, name: '髂内远端淋巴结'},
-			{value: 402, name: '闭孔头测淋巴结'},
-			{ value: 117, name: '闭孔尾测淋巴结'},
 			{ value: 254, name: '髂总动脉分叉血管淋巴结'}，]
-}
-```
-### 审核数展示
-|  方法名  |                totalExamedNum                |
-| :------: | :--------------------------------------------: |
-| 传入参数 |        当前用户id        |
-|  返回值  | 当前用户所管理的所有标记者已标记与已审核数目 |
-
-```javascript
-GET /users/examedNum
-{
-    userId: 007,
-    annotated: 50,
-    examed: 30,
 }
 ```
 ### 标注者列表展示
