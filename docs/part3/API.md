@@ -308,15 +308,15 @@ GET /users/examedNum
 |  方法名  |                getAnnotatorList                |
 | :------: | :--------------------------------------------: |
 | 传入参数 |        当前用户id        |
-|  返回值  | 当前用户所管理的所有标记者分配标注数量，已标注数量与未标注数量 |
+|  返回值  | 当前用户所管理的所有标记者已标注数量,已审核数量,未标注数量 |
 
 ```javascript
 GET /users/annotatorList
 {
     userId: 007,
     annoList: [{name:'旋涡鸣人'，
-    			caseNum:50,
     			annotated:30,
+                examed: 14,
     			unAnnotated:20},
     			......]
 }
