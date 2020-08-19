@@ -239,9 +239,8 @@ GET /powers
 |  返回值  | 当前用户所管理的所有用户数量及分布 |
 
 ```javascript
-GET /users/caseNum
+GET /users/caseNum/{userId}
 {
-    userId: 007,
     total: 100,
     case: [{name:'女性',
     		value:70},
@@ -256,9 +255,8 @@ GET /users/caseNum
 |  返回值  | 当前用户所管理的所有用户标记结节数量及分布 |
 
 ```javascript
-GET /users/nodeNum
+GET /users/nodeNum/{userId}
 {
-    userId: 007,
     total: 1583,
     case: [	{value: 321, name: '歧义候选淋巴结'},
 			{value: 158, name: '结直肠系膜淋巴结'},
@@ -277,9 +275,8 @@ GET /users/nodeNum
 |  返回值  | 当前用户所管理的所有标记者已标注数量,已审核数量,未标注数量 |
 
 ```javascript
-GET /users/getAnnotatorList
+GET /users/getAnnotatorList/{userId}
 {
-    userId: 007,
     annoList: [{name:'旋涡鸣人'，
     			annotated:30,
                 examed: 14,
@@ -294,9 +291,8 @@ GET /users/getAnnotatorList
 |  返回值  | 标注者分配病例及其标注与审核情况 |
 
 ```javascript
-GET /users/getAnnotatorList
+GET /users/getAnnotatorList/{userId}
 {
-    annotatorName: '黄昊',
     annoList: [{    PatientName: 'Li gang',
                     MRN: '0009629786',
                     AccessionNumber: 'CT00566598',
@@ -328,9 +324,8 @@ GET /users/getAnnotatorList
 |  返回值  | 当前用户所管理的所有标记者的标注动态 |
 
 ```javascript
-GET /users/getAnnotatorActivity
+GET /users/getAnnotatorActivity/{userId}
 {
-    userId: 007,
     annoList: [{name:'旋涡鸣人',
 				SericeId: '6354132',
 				time: '7/10',},
@@ -346,9 +341,9 @@ GET /users/getAnnotatorActivity
 |  返回值  | 当前用户所管理的所有病例数据 |
 
 ```javascript
-GET /users/annotatorList
+GET /users/annotatorList/{userId}
 {
-    userId: 007,
+
     caseList: [{PatientName: 'Li gang', 
 				MRN: '0009629786', 
 				AccessionNumber: 'CT00566598', 
