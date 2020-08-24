@@ -9,4 +9,5 @@ DataOverView.js
 DataOverView.css
 ```
 
-为适应redux要求，所有组件均写为function形式，而非class形式。
+为适应redux要求，所有组件尽量写为function形式，而非class形式；在需使用生命周期等class功能时除外。
+
