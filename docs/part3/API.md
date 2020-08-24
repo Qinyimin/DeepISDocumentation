@@ -239,13 +239,13 @@ GET /powers
 |  返回值  | 当前用户所管理的所有用户数量及分布 |
 
 ```javascript
-GET /users/caseNum/{userId}
+GET /cases/caseNum/{userId, keywords}
 {
     total: 100,
-    case: [{name:'女性',
-    		value:70},
-    		{name:'男性',
-    		value:30}],
+    case: [{"gender":"女",
+    		"value":70},
+    		{"gender":"男",
+    		"value":30}],
 }
 ```
 ### 结节数展示
@@ -255,17 +255,17 @@ GET /users/caseNum/{userId}
 |  返回值  | 当前用户所管理的所有用户标记结节数量及分布 |
 
 ```javascript
-GET /users/nodeNum/{userId}
+GET /measurements/nodeNum/{userId}
 {
     total: 1583,
-    case: [	{value: 321, name: '歧义候选淋巴结'},
-			{value: 158, name: '结直肠系膜淋巴结'},
-			{value: 42, name: '髂外（髂总）淋巴结'},
-			{value: 259, name: '髂内近端淋巴结'},
-			{value: 30, name: '髂内远端淋巴结'},
-			{value: 402, name: '闭孔头测淋巴结'},
-			{ value: 117, name: '闭孔尾测淋巴结'},
-			{ value: 254, name: '髂总动脉分叉血管淋巴结'}，]
+    case: [	{value: 321, "partition": '歧义候选淋巴结'},
+			{value: 158, "partition": '结直肠系膜淋巴结'},
+			{value: 42, "partition": '髂外（髂总）淋巴结'},
+			{value: 259, "partition": '髂内近端淋巴结'},
+			{value: 30, "partition": '髂内远端淋巴结'},
+			{value: 402, "partition": '闭孔头测淋巴结'},
+			{value: 117, "partition": '闭孔尾测淋巴结'},
+			{value: 254, "partition": '髂总动脉分叉血管淋巴结'}，]
 }
 ```
 ### 标注者列表展示
@@ -275,13 +275,13 @@ GET /users/nodeNum/{userId}
 |  返回值  | 当前用户所管理的所有标记者已标注数量,已审核数量,未标注数量 |
 
 ```javascript
-GET /users/getAnnotatorList/{userId}
+GET /cases/getAnnotatorList/{userId}
 {
-    annoList: [{name:'旋涡鸣人'，
-    			annotated:30,
-                examed: 14,
-    			unAnnotated:20},
-    			......]
+    [{  name:'旋涡鸣人'，
+        annotated:30,
+        examed: 14,
+        unAnnotated:20},
+        ......]
 }
 ```
 ### 病例标注情况列表展示
@@ -291,7 +291,7 @@ GET /users/getAnnotatorList/{userId}
 |  返回值  | 标注者分配病例及其标注与审核情况 |
 
 ```javascript
-GET /users/getAnnotatorList/{userId}
+GET /cases/getExamedList/{userId}
 {
     annoList: [{    PatientName: 'Li gang',
                     MRN: '0009629786',
@@ -341,7 +341,7 @@ GET /users/getAnnotatorActivity/{userId}
 |  返回值  | 当前用户所管理的所有病例数据 |
 
 ```javascript
-GET /users/annotatorList/{userId}
+GET /cases/annotatorList/{userId}
 {
 
     caseList: [{PatientName: 'Li gang', 
@@ -363,7 +363,7 @@ GET /users/annotatorList/{userId}
 |  返回值  | 满足条件的结节列表 |
 
 ```javascript
-POST /users/nodeList
+POST /measurements/nodeList
 {
     partition:'XM',
     diam: [1.0, 1.5],
