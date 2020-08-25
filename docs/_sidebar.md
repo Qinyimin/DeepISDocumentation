@@ -5,6 +5,8 @@
 * [Part II](part2/README.md)
     * [项目组织结构](part2/structure.md)
     * [组件](part2/component.md)
+    * [权限管理](part2/authorityManagement.md)
+    * [用户登录](part2/login.md)
 * [Part III](part3/README.md)
     * [更新日志](part3/updateLog.md)
     * [前后端API定义](part3/API.md)
