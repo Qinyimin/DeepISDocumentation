@@ -25,7 +25,7 @@ docsify serve docs
 2. 修改导航文件 _sidebar.md, 添加该文件的相对路径到目录中
 3. 在 Part3/updateLog.md 中记录你的更改
 
-[^在提交更改到Github之前，请使用docsify serve命令预览以确保你的md文件能够正常显示！]: 
+> 在提交更改到Github之前，请使用docsify serve命令预览以确保你的md文件能够正常显示！
 
 
 ## Add Plugins
