@@ -233,18 +233,18 @@ GET /powers
 ```
 ## 展示信息接口
 ### 病例数展示
-|  方法名  |                totalCaseNum                |
-| :------: | :--------------------------------------------: |
-| 传入参数 |        当前用户id        |
+|  方法名  |            totalCaseNum            |
+| :------: | :--------------------------------: |
+| 传入参数 |       当前用户id，关键字key        |
 |  返回值  | 当前用户所管理的所有用户数量及分布 |
 
 ```javascript
-GET /cases/caseNum/{userId, keywords}
+GET /cases/caseNum/
 {
     total: 100,
-    case: [{"gender":"女",
+    case: [{"name":"女",
     		"value":70},
-    		{"gender":"男",
+    		{"name":"男",
     		"value":30}],
 }
 ```
@@ -255,17 +255,17 @@ GET /cases/caseNum/{userId, keywords}
 |  返回值  | 当前用户所管理的所有用户标记结节数量及分布 |
 
 ```javascript
-GET /measurements/nodeNum/{userId}
+GET /measurements/nodeNum
 {
     total: 1583,
-    case: [	{value: 321, "partition": '歧义候选淋巴结'},
-			{value: 158, "partition": '结直肠系膜淋巴结'},
-			{value: 42, "partition": '髂外（髂总）淋巴结'},
-			{value: 259, "partition": '髂内近端淋巴结'},
-			{value: 30, "partition": '髂内远端淋巴结'},
-			{value: 402, "partition": '闭孔头测淋巴结'},
-			{value: 117, "partition": '闭孔尾测淋巴结'},
-			{value: 254, "partition": '髂总动脉分叉血管淋巴结'}，]
+    case: [	{value: 321, "name": '歧义候选淋巴结'},
+			{value: 158, "name": '结直肠系膜淋巴结'},
+			{value: 42, "name": '髂外（髂总）淋巴结'},
+			{value: 259, "name": '髂内近端淋巴结'},
+			{value: 30, "name": '髂内远端淋巴结'},
+			{value: 402, "name": '闭孔头测淋巴结'},
+			{value: 117, "name": '闭孔尾测淋巴结'},
+			{value: 254, "name": '髂总动脉分叉血管淋巴结'}，]
 }
 ```
 ### 标注者列表展示
@@ -275,7 +275,7 @@ GET /measurements/nodeNum/{userId}
 |  返回值  | 当前用户所管理的所有标记者已标注数量,已审核数量,未标注数量 |
 
 ```javascript
-GET /cases/getAnnotatorList/{userId}
+GET /cases/getAnnotatorList
 {
     [{  name:'旋涡鸣人'，
         annotated:30,
@@ -291,7 +291,7 @@ GET /cases/getAnnotatorList/{userId}
 |  返回值  | 标注者分配病例及其标注与审核情况 |
 
 ```javascript
-GET /cases/getExamedList/{userId}
+GET /cases/getExamedList/
 {
     annoList: [{    PatientName: 'Li gang',
                     MRN: '0009629786',
@@ -324,7 +324,7 @@ GET /cases/getExamedList/{userId}
 |  返回值  | 当前用户所管理的所有标记者的标注动态 |
 
 ```javascript
-GET /users/getAnnotatorActivity/{userId}
+GET /users/getAnnotatorActivity/
 {
     annoList: [{name:'旋涡鸣人',
 				SericeId: '6354132',
@@ -341,7 +341,7 @@ GET /users/getAnnotatorActivity/{userId}
 |  返回值  | 当前用户所管理的所有病例数据 |
 
 ```javascript
-GET /cases/annotatorList/{userId}
+GET /cases/annotatorList/
 {
 
     caseList: [{PatientName: 'Li gang', 
@@ -355,7 +355,7 @@ GET /cases/annotatorList/{userId}
 }
 (StudyInstanceUID用于跳转ohif相应病例,不可缺少，其余为展示内容，可按情况增减)
 ```
-## 结节搜索接口接口
+## 结节搜索接口
 ### 搜索结果展示
 |  方法名  |                getNodeList                |
 | :------: | :--------------------------------------------: |
@@ -374,4 +374,228 @@ POST /measurements/nodeList
 				{…….}
 }
 (搜索满足分区'为结直肠系膜淋巴结'(XM),直径在1.0~1.5cm范围内的结节 )
+```
+
+------
+
+## 新增API接口(10/12/2020)
+
+------
+
+### 插入case
+
+|  方法名  |      caseInsert      |
+| :------: | :------------------: |
+| 方法描述 | 向数据库中插入新case |
+| 传入参数 |      case(json)      |
+|  返回值  |   插入成功返回true   |
+
+```javascript
+POST /case/cases/caseInsert
+(插入case例子如下：)
+{
+    "userID": 0,
+    "caseID": 10,
+    "PatientName": "MISTER^DX",
+    "PatientID": "3524578",
+    "AccessionNumber": "0000000004",
+    "StudyDate": "20010109",
+    "modalities": "CT\SR",
+    "gender": "male",
+    "StudyInstanceUID": "1.2.840.113619.2.67.2158294438.15745010109084247.20000",
+    "key": "1.2.840.113619.2.67.2158294438.15745010109084247.20000",
+    "annotated": False,
+    "examed": False,
+}
+插入成功返回true,失败返回原因
+```
+
+### 修改case的标注者
+
+|  方法名  |              caseModify              |
+| :------: | :----------------------------------: |
+| 方法描述 | 将某case的标注者改为userID对应标注者 |
+| 传入参数 |            caseID, userID            |
+|  返回值  |           修改成功返回true           |
+
+```javascript
+POST /cases/caseModify
+
+修改成功返回true,失败返回原因
+```
+
+### 修改case标注状态
+
+|  方法名  |            caseStatusModify             |
+| :------: | :-------------------------------------: |
+| 方法描述 | 将某case的标注或审核状态从false变为true |
+| 传入参数 |   caseID, userID, "examed/annotated"    |
+|  返回值  |            修改成功返回true             |
+
+```javascript
+POST /cases/caseStatusModify
+
+修改成功返回true,失败返回原因
+```
+
+### 获取标注
+
+|  方法名  |        getMeasurementById         |
+| :------: | :-------------------------------: |
+| 传入参数 | StudyInstanceUID，UserID （json） |
+|  返回值  |     该用户对该例CT的全部标注      |
+
+```javascript
+POST /node_search/users/getMeasurementById
+
+{
+   "visible":true,
+   "active":false,
+   "invalidated":false,
+   "handles":
+       "start":
+           "x":275.42547425474254,
+           "y":260.50948509485096,
+           "highlight":true,
+           "active":false,
+       "end":
+           "x":293.4634146341463,
+           "y":286.87262872628725,
+           "highlight":true,
+           "active":false,
+       "initialRotation":0,
+       "textBox":  
+           "active":false,    
+           "hasMoved":false,    
+           "movesIndependently":false, 
+           "drawnIndependently":true,
+           "allowedOutsideImage":true,
+           "hasBoundingBox":true,
+           "x":293.4634146341463,
+           "y":273.6910569105691,
+           "boundingBox":
+               "width":10,
+               "height":25,
+               "left":432.99999999999994,
+               "top":437.5,
+    "uuid":"44b487fe-e969-4d4c-8a4e-786c3585b124",
+    "PatientID":"0009629786",
+    "StudyInstanceUID":"1.2.840.78.75.7.5.1674158.1371717835",        "SeriesInstanceUID":"1.3.12.2.1107.5.1.4.73473.30000013061923223125000058318",     "SOPInstanceUID":"1.3.12.2.1107.5.1.4.73473.30000013061923223125000058570",     "frameIndex":0,      "imagePath":"1.2.840.78.75.7.5.1674158.1371717835_1.3.12.2.1107.5.1.4.73473.30000013061923223125000058318_1.3.12.2.1107.5.1.4.73473.30000013061923223125000058570_0",
+    "lesionNamingNumber":2,
+    "userId":8,
+    "toolType":"RectangleRoi",
+    "timepointId":"TimepointId",
+    "measurementNumber":2,
+    "cachedStats":
+        "area":240.3515837868401,    
+         "count":513,
+         "mean":-29.742690058479532,
+         "variance":6415.064395882494,
+         "stdDev":80.0940971350729,
+         "min":-174,
+         "max":103,
+         "pixels":,
+    "viewport":
+        "scale":1.44140625,
+        "translation":
+            "x":0,
+            "y":0,
+         "voi":
+             "windowWidth":315,
+             "windowCenter":45,       
+          "invert":false,
+          "pixelReplication":false,
+          "rotation":0,
+          "hflip":false,
+          "vflip":false,
+          "labelmap":false,
+          "displayedArea":
+              "tlhc":
+                  "x":1,
+                  "y":1,
+               "brhc":
+                   "x":512,
+                    "y":512
+                "rowPixelSpacing":0.7109375,
+                "columnPixelSpacing":0.7109375,
+                "presentationSizeMode":"NONE",
+     "unit":"HU",
+}
+```
+
+
+
+**以下的API需要新建Collection保存启始帧、终止帧**
+
+**{**
+    **StudyInstanceUID:"1.2.840.78.75.7.5.1674158.1371717835"**
+    **userID: 8**
+    **StartingSlice: 5**
+    **EndSlice:255**
+**}**
+
+### 保存启始帧
+
+|  方法名  |       saveStartingSlicebyId       |
+| :------: | :-------------------------------: |
+| 传入参数 | StudyInstanceUID，UserID （json） |
+|  返回值  |      启始帧帧数是否插入成功       |
+
+```javascript
+POST /startingSliceandEndSlice/saveStartingSlicebyId
+{
+    StudyInstanceUID:"1.2.840.78.75.7.5.1674158.1371717835",
+    userID: 8,
+    StartingSlice: 5,
+}
+
+Status: 200
+```
+
+### 保存终止帧
+
+|  方法名  |         saveEndSlicebyId          |
+| :------: | :-------------------------------: |
+| 传入参数 | StudyInstanceUID，UserID （json） |
+|  返回值  |      终止帧帧数是否插入成功       |
+
+```javascript
+POST /startingSliceandEndSlice/saveEndSlicebyId
+{
+    StudyInstanceUID:"1.2.840.78.75.7.5.1674158.1371717835",
+    userID: 8,
+    EndSlice: 5,
+}
+
+Status: 200
+```
+
+### 获取启始帧
+
+|  方法名  |       getStartingSlicebyId        |
+| :------: | :-------------------------------: |
+| 传入参数 | StudyInstanceUID，UserID （json） |
+|  返回值  | 该用户给出的该例CT的启始帧的帧数  |
+
+```javescript
+POST /startingSliceandEndSlice/getStartingSlicebyId
+
+{
+  StartingSlice: 5,
+}
+```
+
+### 获取终止帧
+
+|  方法名  |          getEndSlicebyId          |
+| :------: | :-------------------------------: |
+| 传入参数 | StudyInstanceUID，UserID （json） |
+|  返回值  | 该用户给出的该例CT的终止帧的帧数  |
+
+```javascript
+POST /startingSliceandEndSlice/getEndSlicebyId
+
+{
+    EndSlice: 255,
+}
 ```
