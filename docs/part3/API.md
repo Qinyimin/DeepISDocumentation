@@ -570,32 +570,19 @@ POST /startingSliceandEndSlice/saveEndSlicebyId
 Status: 200
 ```
 
-### 获取启始帧
+### 获取启始帧、终止帧
 
-|  方法名  |       getStartingSlicebyId        |
-| :------: | :-------------------------------: |
-| 传入参数 | StudyInstanceUID，UserID （json） |
-|  返回值  | 该用户给出的该例CT的启始帧的帧数  |
-
-```javescript
-POST /startingSliceandEndSlice/getStartingSlicebyId
-
-{
-  StartingSlice: 5,
-}
-```
-
-### 获取终止帧
-
-|  方法名  |          getEndSlicebyId          |
-| :------: | :-------------------------------: |
-| 传入参数 | StudyInstanceUID，UserID （json） |
-|  返回值  | 该用户给出的该例CT的终止帧的帧数  |
+|  方法名  |        getStartingandEndSlicebyId        |
+| :------: | :--------------------------------------: |
+| 传入参数 |    StudyInstanceUID，UserID （json）     |
+|  返回值  | 该用户给出的该例CT的启始帧、终止帧的帧数 |
 
 ```javascript
-POST /startingSliceandEndSlice/getEndSlicebyId
+POST /startingSliceandEndSlice/getStartingandEndSlicebyId
 
 {
+    StartingSlice: 5,
     EndSlice: 255,
 }
+
 ```
