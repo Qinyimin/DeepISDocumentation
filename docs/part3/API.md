@@ -440,10 +440,10 @@ POST /cases/caseStatusModify
 
 ### 获取标注
 
-|  方法名  |        getMeasurementById         |
-| :------: | :-------------------------------: |
-| 传入参数 | StudyInstanceUID，UserID （json） |
-|  返回值  |     该用户对该例CT的全部标注      |
+|  方法名  |    getMeasurementById    |
+| :------: | :----------------------: |
+| 传入参数 | StudyInstanceUID，UserID |
+|  返回值  | 该用户对该例CT的全部标注 |
 
 ```javascript
 POST /node_search/users/getMeasurementById
@@ -536,10 +536,10 @@ POST /node_search/users/getMeasurementById
 
 ### 保存启始帧
 
-|  方法名  |       saveStartingSlicebyId       |
-| :------: | :-------------------------------: |
-| 传入参数 | StudyInstanceUID，UserID （json） |
-|  返回值  |      启始帧帧数是否插入成功       |
+|  方法名  |  saveStartingSlicebyId   |
+| :------: | :----------------------: |
+| 传入参数 | StudyInstanceUID，UserID |
+|  返回值  |  启始帧帧数是否插入成功  |
 
 ```javascript
 POST /startingSliceandEndSlice/saveStartingSlicebyId
@@ -554,10 +554,10 @@ Status: 200
 
 ### 保存终止帧
 
-|  方法名  |         saveEndSlicebyId          |
-| :------: | :-------------------------------: |
-| 传入参数 | StudyInstanceUID，UserID （json） |
-|  返回值  |      终止帧帧数是否插入成功       |
+|  方法名  |     saveEndSlicebyId     |
+| :------: | :----------------------: |
+| 传入参数 | StudyInstanceUID，UserID |
+|  返回值  |  终止帧帧数是否插入成功  |
 
 ```javascript
 POST /startingSliceandEndSlice/saveEndSlicebyId
@@ -574,7 +574,7 @@ Status: 200
 
 |  方法名  |        getStartingandEndSlicebyId        |
 | :------: | :--------------------------------------: |
-| 传入参数 |    StudyInstanceUID，UserID （json）     |
+| 传入参数 |         StudyInstanceUID，UserID         |
 |  返回值  | 该用户给出的该例CT的启始帧、终止帧的帧数 |
 
 ```javascript
