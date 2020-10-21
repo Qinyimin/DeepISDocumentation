@@ -233,10 +233,10 @@ GET /powers
 ```
 ## 展示信息接口
 ### 病例数展示
-|  方法名  |            totalCaseNum            |
-| :------: | :--------------------------------: |
-| 传入参数 |       当前用户id，关键字key        |
-|  返回值  | 当前用户所管理的所有用户数量及分布 |
+|  方法名  |    totalCaseNum    |
+| :------: | :----------------: |
+| 传入参数 |     当前用户id     |
+|  返回值  | 所有病人数量及分布 |
 
 ```javascript
 GET /cases/caseNum/
@@ -586,3 +586,148 @@ POST /startingSliceandEndSlice/getStartingandEndSlicebyId
 }
 
 ```
+
+------
+
+## 新增API接口(10/20/2020)
+
+### 获取病人总数
+
+|  方法名  |        getTotalPatientNum        |
+| :------: | :------------------------------: |
+| 传入参数 |               NULL               |
+|  返回值  | case_info数据库中PatientID的总数 |
+
+```javascript
+GET /case_info/getTotalPatientNum
+{
+    totalPatientNum: 20
+}
+
+```
+
+### 获取病人性别分布
+
+|  方法名  |  getPatientGenderDistribution   |
+| :------: | :-----------------------------: |
+| 传入参数 |              NULL               |
+|  返回值  | case_info数据库中病人的性别分布 |
+
+```javascript
+GET /case_info/getPatientGenderDistribution
+{
+	gender: [{"name":"女",
+        	"value":70},
+            {"name":"男",
+            "value":30}],
+}
+
+```
+
+
+
+### 获取病人年龄分布
+
+|  方法名  |    getPatientAgeDistribution    |
+| :------: | :-----------------------------: |
+| 传入参数 |              NULL               |
+|  返回值  | case_info数据库中病人的年龄分布 |
+
+```javascript
+GET /case_info/getPatientAgeDistribution
+{
+	gender: [{"name":"0~14",
+        	"value":0},
+            {"name":"15~29",
+            "value":10},
+            {"name":"30~49",
+            "value":20},
+            {"name":"50~64",
+            "value":10},
+            {"name":"65以上",
+            "value":10}]
+}
+
+```
+
+
+
+### 获取病例总数
+
+|  方法名  |        getTotalCaseNum        |
+| :------: | :---------------------------: |
+| 传入参数 |             NULL              |
+|  返回值  | case_info数据库中caseID的总数 |
+
+```javascript
+GET /case_info/getTotalCaseNum
+{
+    totalCaseNum: 20
+}
+
+```
+
+### 获取结节总数
+
+|  方法名  |        getTotalNodeNum         |
+| :------: | :----------------------------: |
+| 传入参数 |              NULL              |
+|  返回值  | measurements数据库中结节的总数 |
+
+```javascript
+GET /measurements/getTotalNodeNum
+{
+    totalNodeNum: 100
+}
+
+```
+
+### 获取结节分区分布
+
+|  方法名  |    getNodePartitionDistribution    |
+| :------: | :--------------------------------: |
+| 传入参数 |                NULL                |
+|  返回值  | measurements数据库中结节的分区分布 |
+
+```javascript
+GET /measurements/getPatientAgeDistribution
+{
+    nodeDistribution: [	{"value": 321, "name": '侧方区'},
+						{"value": 158, "name": '非侧方区'}]
+}
+
+```
+
+### 获取结节直径分布
+
+|  方法名  |          getNodeDiameterDistribution           |
+| :------: | :--------------------------------------------: |
+| 传入参数 |                      NULL                      |
+|  返回值  | measurements数据库中结节的shortestDiameter分布 |
+
+```javascript
+GET /measurements/getNodeDiameterDistribution
+{
+    node: [	{"value": 321, "name": '0~3'},
+			{"value": 158, "name": '3~5'},
+          	{"value": 158, "name": '5~10'},
+          	{"value": 158, "name": '10以上'}]
+}
+
+```
+
+### 获取模型检测进度
+
+|  方法名  |               getModelDetectProcess               |
+| :------: | :-----------------------------------------------: |
+| 传入参数 |                       NULL                        |
+|  返回值  | case_info数据库中结节的status=1的占总case数的比例 |
+
+```javascript
+GET /case_info/getModelDetectProcess
+{
+	percent : [0.5, 10, 20]
+}
+(百分比，已处理数，总数)
+```
+
