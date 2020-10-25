@@ -731,3 +731,162 @@ GET /case_info/getModelDetectProcess
 (百分比，已处理数，总数)
 ```
 
+## 新增API接口(10/20/2020)
+
+### 获取病例良恶性情况
+
+|  方法名  | getCaseNegativeAndPositive |
+| :------: | :------------------------: |
+| 传入参数 |            null            |
+|  返回值  |    所有病例的良恶性数值    |
+
+```javascript
+GET /case_info/getCaseNegativeAndPositive
+{
+    "positive":120,
+    "negative":250
+}
+(良性个数，恶性个数)
+```
+
+### 获取每日新增病例数
+
+|  方法名  |    getDailyAddCase     |
+| :------: | :--------------------: |
+| 传入参数 |          null          |
+|  返回值  | 近20天内的每日新增病例 |
+
+```javascript
+GET /case_info/getDailyAddCase
+{
+	"date":["2020/10/12","2020/10/13","2020/10/14"]
+    "DailyAdd":[150,140,124]
+}
+(日期，每日新增 ps:个数一致，分别对应,如：date[0]新增了DailyAdd[0]个病例)
+```
+
+### 获取所有病人病例情况
+
+|  方法名  |   getCaseList    |
+| :------: | :--------------: |
+| 传入参数 |       null       |
+|  返回值  | 所有病人病例情况 |
+
+```javascript
+GET /case_info/getCaseList
+{
+      "caseList":[
+          {
+            "userID": 0,
+            "key":"0009369854",
+            "PatientName": "ji lu xiu",
+            "PatientID": "0009369854",
+            "patientSex": "男",
+            "case":[
+                {
+                    "key":"20040310",
+                    "StudyDate":"20040310",
+                    "caseNum":2,
+                    "caseItem":[
+                        {
+                            "key":"1.2.840.78.75.7.5.280728.1370251044",
+                            "AccessionNumber":"CT00549838",
+                            "StudyInstanceUID":"1.2.840.78.75.7.5.280728.1370251044",
+                            "modalities":"CT\\SR" 
+                        },
+                        {
+                            "key":"1.3.840.78.75.7.5.280728.7841241044",
+                            "AccessionNumber":"CT00549838",
+                            "StudyInstanceUID":"1.3.840.78.75.7.5.280728.7841241044",
+                            "modalities":"CT\\SR" 
+                        },					                
+                    ]
+                },
+                {
+                    "key":"20140601",
+                    "StudyDate":"20140601",
+                    "caseNum":1,
+                    "caseItem":[
+                        {
+                            "key":"1.2.840.78.75.7.5.280728.1370251044",
+                            "AccessionNumber":"CT00549838",
+                            "StudyInstanceUID":"1.2.840.78.75.7.5.280728.1370251044",
+                            "modalities":"CT\\SR" 
+                        }				                
+                    ]
+                  }   
+              ]
+          },
+          {
+            "userID": 0,
+            "key":"0009629786",
+            "PatientName": "li gang",
+            "PatientID": "0009629786",
+            "patientSex": "女",
+            "case":[
+                {
+                    "key":"20130620",
+                    "StudyDate":"20130620",
+                    "caseNum":1,
+                    "caseItem":[
+                        {
+                            "key":"1.2.840.78.75.7.5.280728.1370251041",
+                            "AccessionNumber":"CT00549838",
+                            "StudyInstanceUID":"1.2.840.78.75.7.5.280728.1370251044",
+                            "modalities":"CT\\SR" 
+                        }					                
+                    ]
+                },
+                {
+                    "key":"20140601",
+                    "StudyDate":"20140601",
+                    "caseNum":1,
+                    "caseItem":[
+                        {
+                            "key":"1.2.840.78.75.7.5.280728.1370251044",
+                            "AccessionNumber":"CT00549838",
+                            "StudyInstanceUID":"1.2.840.78.75.7.5.280728.1370251044",
+                            "modalities":"CT\\SR" 
+                        }				                
+                    ]
+                }   
+              ]       
+          }
+      ]
+}
+(结构逻辑就是：caseList=
+ [
+    {	病人:,
+     	病例:[
+     			{
+     				检查日期:
+     				具体当日病例:{}
+    			}
+     		]
+    },
+    {
+       病人:,
+       病例:[
+           		{
+                    检查日期:
+                    具体当日病例:{}
+                }
+       		]
+    }
+]，病人的key值是他的id值，检查日期里的key值是日期，具体病例的key值是病例uid，在检查日期里的caseNum是当日检查的次数，也是当日检查的病例数)
+```
+
+### measurement更新
+
+|  方法名  |      measurementsUpdate       |
+| :------: | :---------------------------: |
+| 传入参数 |       measurements列表        |
+|  返回值  | 更新成功返回200，失败返回原因 |
+
+```javascript
+POST /measurements/measurementsUpdate
+传入{
+	[标注数据列表]
+}
+更新成功返回200，失败返回原因
+```
