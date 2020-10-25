@@ -731,7 +731,7 @@ GET /case_info/getModelDetectProcess
 (百分比，已处理数，总数)
 ```
 
-## 新增API接口(10/20/2020)
+## 新增API接口(10/25/2020)
 
 ### 获取病例良恶性情况
 
