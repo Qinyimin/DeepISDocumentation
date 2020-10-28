@@ -1,4 +1,4 @@
-**测试1**  "StudyInstanceUID" 为 "1.2.840.78.75.7.5.10839406.1383139266", userID为0的measurements数据为空，现新增3条measurements数据，3条measurements的location分别为“闭孔头侧 BT” ，“闭孔尾侧 BW”，“髂内近 QNJ”
+**测试1**  "StudyInstanceUID" 为 "1.2.840.78.75.7.5.10839406.1383139266", userID为0的measurements数据为空，现新增3条measurements数据，3条measurements的location分别为“闭孔头侧 BT” ，“闭孔尾侧 BW”，“髂内近 QNJ ”
 
 ```json
 [
