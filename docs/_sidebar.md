@@ -12,3 +12,4 @@
     * [前后端API定义](part3/API.md)
     * [前端HttpClient](part3/httpClient.md)
     * [测试](part3/tests.md)
+    * [测试insertOrReplaceAPI](part3/测试insertOrReplaceAPI.md)
