@@ -1165,7 +1165,7 @@
     "timepointId" : "TimepointId",
     "toolName" : "Bidirectional",
     "toolType" : "Bidirectional",
-    "uuid" : "ba764816-8113-4ca1-bd43-1a51f883f9b3",
+    "uuid" : "5bfc8564-d103-449e-be3e-6dd6a9b5d36e",
     "viewport" : {
         "scale" : 1.072265625,
         "translation" : {
